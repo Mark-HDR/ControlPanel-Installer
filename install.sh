@@ -502,50 +502,50 @@ systemctl enable controlpanel.service --now
 }
 
 deps_ubuntu() {
-print "Installing dependencies for Ubuntu ${OS_VER}"
+  print "Installing dependencies for Ubuntu ${OS_VER}"
 
-# Add "add-apt-repository" command
-apt-get install -y software-properties-common curl apt-transport-https ca-certificates gnupg
+  # Add "add-apt-repository" command
+  apt-get install -y software-properties-common curl apt-transport-https ca-certificates gnupg
 
-# Add additional repositories for PHP, Redis, and MariaDB
-LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
-curl -sSL https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+  # Add additional repositories for PHP, Redis, and MariaDB
+  LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
+  curl -sSL https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 
-# Update repositories list
-apt-get update -y && apt-get upgrade -y
+  # Update repositories list
+  apt-get update -y && apt-get upgrade -y
 
-# Add universe repository if you are on Ubuntu 18.04
-[ "$OS_VER_MAJOR" == "18" ] && apt-add-repository universe
+  # Add universe repository if you are on Ubuntu 18.04
+  [ "$OS_VER_MAJOR" == "18" ] && apt-add-repository universe
 
-# Install Dependencies
-apt-get install -y sudo apt install php8.3-intl php8.1 php8.1-{cli,gd,mysql,pdo,mbstring,tokenizer,bcmath,xml,fpm,curl,zip,intl} mariadb-server nginx tar unzip git redis-server psmisc net-tools
+  # Install Dependencies
+  apt-get install -y sudo php8.3 php8.3-redis php8.3-intl php8.3-cli php8.3-gd php8.3-mysql php8.3-pdo php8.3-mbstring php8.3-tokenizer php8.3-bcmath php8.3-xml php8.3-fpm php8.3-curl php8.3-zip mariadb-server nginx tar unzip git redis-server psmisc net-tools
 
-# Enable services
-enable_services_debian_based
+  # Enable services
+  enable_services_debian_based
 }
 
 deps_debian() {
-print "Installing dependencies for Debian ${OS_VER}"
+  print "Installing dependencies for Debian ${OS_VER}"
 
-# MariaDB need dirmngr
-apt-get install -y dirmngr
+  # MariaDB need dirmngr
+  apt-get install -y dirmngr
 
-# install PHP 8.0 using sury's repo
-apt-get install -y ca-certificates apt-transport-https lsb-release
-wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
+  # install PHP 8.3 using sury's repo
+  apt-get install -y ca-certificates apt-transport-https lsb-release
+  wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+  echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
-# Add the MariaDB repo
-curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
+  # Add the MariaDB repo
+  curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 
-# Update repositories list
-apt-get update -y && apt-get upgrade -y
+  # Update repositories list
+  apt-get update -y && apt-get upgrade -y
 
-# Install Dependencies
-apt-get install -y sudo apt install php8.3-intl php8.1 php8.1-{cli,gd,mysql,pdo,mbstring,tokenizer,bcmath,xml,fpm,curl,zip,intl} mariadb-server nginx tar unzip git redis-server psmisc net-tools
+  # Install Dependencies
+  apt-get install -y sudo php8.3 php8.3-redis php8.3-intl php8.3-cli php8.3-gd php8.3-mysql php8.3-pdo php8.3-mbstring php8.3-tokenizer php8.3-bcmath php8.3-xml php8.3-fpm php8.3-curl php8.3-zip mariadb-server nginx tar unzip git redis-server psmisc net-tools
 
-# Enable services
-enable_services_debian_based
+  # Enable services
+  enable_services_debian_based
 }
 
 deps_centos() {
