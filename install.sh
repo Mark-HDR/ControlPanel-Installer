@@ -35,7 +35,7 @@ FQDN=""
 
 update_variables() {
 CLIENT_VERSION="$(grep "'version'" "/var/www/controlpanel/config/app.php" | cut -c18-25 | sed "s/[',]//g")"
-LATEST_VERSION="$(curl -s https://raw.githubusercontent.com/Ctrlpanel-gg/panel/main/config/app.php | grep "'version'" | cut -c18-25 | sed "s/[',]//g")"
+LATEST_VERSION="$(curl -s https://raw.githubusercontent.com/Ctrlpanel-gg/panel/refs/heads/main/config/app.php | grep "'version'" | cut -c18-25 | sed "s/[',]//g")"
 }
 
 # Visual Functions #
